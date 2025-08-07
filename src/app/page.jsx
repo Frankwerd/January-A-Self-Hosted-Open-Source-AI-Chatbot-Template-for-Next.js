@@ -1,16 +1,19 @@
-"use client";
+// src/app/page.jsx
+"use client"; // This is essential for interactivity to work
+
 import React from 'react';
 
-export default function JanuaryPage() {
-  const copyToClipboard = (elementId, button) => {
-    const codeEl = document.getElementById(elementId);
-    if (!codeEl) return;
+export default function HomePage() {
 
-    navigator.clipboard.writeText(codeEl.innerText).then(() => {
+  // Function to handle copying text from code snippets to the clipboard
+  const copyToClipboard = (text, button) => {
+    navigator.clipboard.writeText(text).then(() => {
         const originalText = button.innerHTML;
         button.innerHTML = 'Copied!';
+        button.style.backgroundColor = '#4CAF50'; // Optional: visual feedback
         setTimeout(() => {
             button.innerHTML = originalText;
+            button.style.backgroundColor = ''; // Revert style
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy text: ', err);
@@ -19,142 +22,115 @@ export default function JanuaryPage() {
 
   return (
     <>
-      <head>
-        <meta charSet="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>January - Self-Hosted AI Chatbot</title>
-        <style dangerouslySetInnerHTML={{ __html: `
-          :root {
-              --background-color: #111827;
-              --secondary-bg-color: #1F2937;
-              --primary-text-color: #E5E7EB;
-              --accent-color: #38BDF8;
-              --secondary-text-color: #9CA3AF;
-          }
-          body {
-              background-color: var(--background-color);
-              color: var(--primary-text-color);
-              font-family: 'Inter', sans-serif;
-          }
-          h1, h2, h3 {
-              font-family: 'Poppins', sans-serif;
-          }
-          .code-snippet {
-              font-family: 'Fira Code', monospace;
-              background-color: var(--secondary-bg-color);
-              padding: 1rem;
-              border-radius: 0.5rem;
-              color: var(--primary-text-color);
-              overflow-x: auto;
-          }
-        ` }} />
-      </head>
-      <div className="min-h-screen flex flex-col antialiased">
-        <header className="sticky top-0 z-50 bg-opacity-70 backdrop-blur-lg border-b border-gray-700/50">
-          <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a className="text-2xl font-bold text-[var(--primary-text-color)]" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">January</a>
-            <div className="hidden md:flex items-center space-x-8">
-              <a className="text-[var(--primary-text-color)] hover:text-[var(--accent-color)] transition-colors duration-300" href="#features">Features</a>
-              <a className="text-[var(--primary-text-color)] hover:text-[var(--accent-color)] transition-colors duration-300" href="#installation">Installation</a>
-            </div>
-            <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-2 px-5 rounded-lg hover:bg-opacity-90 transition-colors duration-300" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">View on GitHub</a>
-          </nav>
-        </header>
-        <main className="flex-grow">
-          <section className="relative text-center py-20 md:py-32 px-6 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--background-color)] to-indigo-900/20 opacity-30"></div>
-            <div className="absolute -top-40 -right-40 w-96 h-96 bg-[var(--accent-color)]/10 rounded-full filter blur-3xl opacity-50 animate-pulse"></div>
-            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[var(--accent-color)]/10 rounded-full filter blur-3xl opacity-50 animate-pulse animation-delay-4000"></div>
-            <div className="relative z-10 container mx-auto">
-              <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4">The AI Chatbot You Can Host Yourself</h1>
-              <p className="text-lg md:text-xl text-[var(--secondary-text-color)] max-w-3xl mx-auto mb-8">January is a free, open-source chatbot template for your website. Simple to install, fully customizable, and completely under your control.</p>
-              <div className="flex justify-center items-center gap-4 flex-wrap">
-                <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform duration-300 transform hover:scale-105" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">Get the Code on GitHub</a>
-              </div>
-            </div>
-          </section>
-          <section className="py-20 px-6" id="features">
-            <div className="container mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Everything You Need, Nothing You Don&apos;t</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className="bg-[var(--secondary-bg-color)] p-8 rounded-lg border border-gray-700/50">
-                  <div className="text-[var(--accent-color)] mb-4">
-                    <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Self-Hosted &amp; Private</h3>
-                  <p className="text-[var(--secondary-text-color)]">Keep your data private. January runs on your own server, so conversations stay between you and your users.</p>
-                </div>
-                <div className="bg-[var(--secondary-bg-color)] p-8 rounded-lg border border-gray-700/50">
-                  <div className="text-[var(--accent-color)] mb-4">
-                    <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H5v-2H3v-2H1.258a1 1 0 01-.97-1.243l1.258-7.5a1 1 0 01.97-1.243h7.404a1 1 0 01.97 1.243l-1.258 7.5-1.258 7.5a1 1 0 01-.97 1.243H1v-2h2v-2h2v-2h2v-2h2v-2h2V9a2 2 0 012-2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Bring Your Own API Key</h3>
-                  <p className="text-[var(--secondary-text-color)]">No subscriptions. Connect directly to Google Gemini or OpenAI with your own API key. You only pay for what you use.</p>
-                </div>
-                <div className="bg-[var(--secondary-bg-color)] p-8 rounded-lg border border-gray-700/50">
-                  <div className="text-[var(--accent-color)] mb-4">
-                    <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Simple &amp; Fast Installation</h3>
-                  <p className="text-[var(--secondary-text-color)]">Get up and running in minutes. Just copy the component, install the dependencies, and add your API key.</p>
-                </div>
-                <div className="bg-[var(--secondary-bg-color)] p-8 rounded-lg border border-gray-700/50">
-                  <div className="text-[var(--accent-color)] mb-4">
-                    <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Fully Open-Source</h3>
-                  <p className="text-[var(--secondary-text-color)]">Built for developers. January is completely open-source. Fork it, customize it, and make it your own.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="py-20 px-6 bg-[var(--secondary-bg-color)]" id="installation">
-            <div className="container mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Get Started in 3 Simple Steps</h2>
-              <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="flex justify-center items-center h-16 w-16 mx-auto mb-4 rounded-full bg-[var(--background-color)] text-[var(--accent-color)] text-2xl font-bold border-2 border-[var(--accent-color)]">1</div>
-                  <h3 className="text-xl font-bold mb-2">Copy the Files</h3>
-                  <div className="code-snippet text-left text-sm relative">
-                    <button onClick={(e) => copyToClipboard('code-step-1', e.currentTarget)} className="absolute top-2 right-2 bg-gray-700/50 hover:bg-gray-600/50 text-xs font-semibold text-gray-300 py-1 px-2 rounded-md transition-colors">Copy</button>
-                    <pre><code id="code-step-1">cp -r january/components /your-project/src</code></pre>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-center items-center h-16 w-16 mx-auto mb-4 rounded-full bg-[var(--background-color)] text-[var(--accent-color)] text-2xl font-bold border-2 border-[var(--accent-color)]">2</div>
-                  <h3 className="text-xl font-bold mb-2">Install Dependencies</h3>
-                  <div className="code-snippet text-left text-sm relative">
-                    <button onClick={(e) => copyToClipboard('code-step-2', e.currentTarget)} className="absolute top-2 right-2 bg-gray-700/50 hover:bg-gray-600/50 text-xs font-semibold text-gray-300 py-1 px-2 rounded-md transition-colors">Copy</button>
-                    <pre><code id="code-step-2">npm install @ai-sdk/react @google/generative-ai</code></pre>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-center items-center h-16 w-16 mx-auto mb-4 rounded-full bg-[var(--background-color)] text-[var(--accent-color)] text-2xl font-bold border-2 border-[var(--accent-color)]">3</div>
-                  <h3 className="text-xl font-bold mb-2">Add Your Key</h3>
-                  <div className="code-snippet text-left text-sm relative">
-                    <button onClick={(e) => copyToClipboard('code-step-3', e.currentTarget)} className="absolute top-2 right-2 bg-gray-700/50 hover:bg-gray-600/50 text-xs font-semibold text-gray-300 py-1 px-2 rounded-md transition-colors">Copy</button>
-                    <pre><code id="code-step-3">GOOGLE_GENERATIVE_AI_API_KEY=&quot;YOUR_KEY_HERE&quot;</code></pre>
-                  </div>
-                </div>
-              </div>
-              <div className="text-center mt-12">
-                <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform duration-300 transform hover:scale-105" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">View Full Documentation</a>
-              </div>
-            </div>
-          </section>
-        </main>
-        <footer className="bg-[var(--secondary-bg-color)] text-gray-400 py-8 px-6">
-          <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p className="mb-4 md:mb-0">January - An Open-Source Project</p>
-            <div className="flex space-x-6 mb-4 md:mb-0">
-              <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">GitHub Repository</a>
-              <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/issues">Report an Issue</a>
-              <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/blob/main/LICENSE">MIT License</a>
-            </div>
-            <p>© 2025</p>
+      <header className="sticky top-0 z-50 w-full backdrop-blur-lg bg-[var(--primary-background)] bg-opacity-80">
+        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <a className="text-2xl font-bold text-[var(--primary-text)]" href="#">January</a>
+          <div className="hidden md:flex items-center space-x-8">
+            <a className="text-[var(--secondary-text)] hover:text-[var(--primary-text)] transition-colors" href="#features">Features</a>
+            <a className="text-[var(--secondary-text)] hover:text-[var(--primary-text)] transition-colors" href="#installation">Installation</a>
+            <a className="btn-secondary" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js" rel="noopener noreferrer" target="_blank">View on GitHub</a>
           </div>
-        </footer>
-      </div>
+        </nav>
+      </header>
+
+      <main>
+        <section className="relative text-center py-32 md:py-48 px-6 overflow-hidden" id="hero">
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary-background)] to-transparent z-0"></div>
+          <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-[var(--secondary-background)] rounded-full opacity-20 filter blur-3xl"></div>
+          <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[var(--accent-color)] rounded-full opacity-10 filter blur-3xl"></div>
+          <div className="relative z-10 container mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold text-[var(--primary-text)] mb-4">The AI Chatbot You Can Host Yourself</h1>
+            <p className="text-lg md:text-xl text-[var(--secondary-text)] max-w-3xl mx-auto mb-8">January is a free, open-source, and self-hosted AI chatbot template designed for developers who value privacy, control, and endless customization.</p>
+            <a className="btn-primary inline-block" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js" rel="noopener noreferrer" target="_blank">Get the Code on GitHub</a>
+          </div>
+        </section>
+
+        <section className="py-24 px-8 bg-[var(--secondary-background)]" id="features">
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="feature-card">
+                <svg className="h-10 w-10 text-[var(--accent-color)] mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                <h3 className="text-xl font-bold text-[var(--primary-text)]">Self-Hosted</h3>
+                <p className="text-[var(--secondary-text)]">Deploy on your own server for complete data privacy and control. No third-party reliance.</p>
+              </div>
+              <div className="feature-card">
+                <svg className="h-10 w-10 text-[var(--accent-color)] mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H5v-2H3v-2H1v-4a6 6 0 016-6h1.586a1 1 0 01.707.293l.853.853a2 2 0 002.828 0l.853-.853A1 1 0 0113.414 7H15z" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                <h3 className="text-xl font-bold text-[var(--primary-text)]">Bring Your Own Key</h3>
+                <p className="text-[var(--secondary-text)]">Integrate seamlessly with your preferred AI provider like OpenAI, Anthropic, or any other.</p>
+              </div>
+              <div className="feature-card">
+                <svg className="h-10 w-10 text-[var(--accent-color)] mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                <h3 className="text-xl font-bold text-[var(--primary-text)]">Open-Source</h3>
+                <p className="text-[var(--secondary-text)]">Transparent, community-driven, and MIT licensed. Inspect, modify, and contribute freely.</p>
+              </div>
+              <div className="feature-card">
+                <svg className="h-10 w-10 text-[var(--accent-color)] mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                <h3 className="text-xl font-bold text-[var(--primary-text)]">Modular</h3>
+                <p className="text-[var(--secondary-text)]">Easily extend and customize with a clean, modular architecture. Build the exact chatbot you need.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section className="py-20 px-6" id="installation">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary-text)] mb-4">Quick Installation</h2>
+            <p className="text-lg text-[var(--secondary-text)] max-w-2xl mx-auto mb-12">Get January up and running on your local machine in just a few steps.</p>
+            <div className="max-w-2xl mx-auto text-left space-y-8">
+              <div>
+                <h4 className="text-lg font-semibold text-[var(--primary-text)] mb-2">1. Clone the Repository</h4>
+                <div className="code-snippet">
+                  <code>git clone https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js.git</code>
+                  <button className="copy-button" onClick={(e) => copyToClipboard('git clone https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js.git', e.currentTarget)}>Copy</button>
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-[var(--primary-text)] mb-2">2. Install Dependencies</h4>
+                <div className="code-snippet">
+                  <code>npm install</code>
+                  <button className="copy-button" onClick={(e) => copyToClipboard('npm install', e.currentTarget)}>Copy</button>
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-[var(--primary-text)] mb-2">3. Start the Server</h4>
+                <div className="code-snippet">
+                  <code>npm start</code>
+                  <button className="copy-button" onClick={(e) => copyToClipboard('npm start', e.currentTarget)}>Copy</button>
+                </div>
+              </div>
+            </div>
+            <a className="btn-primary inline-block mt-12" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js#readme" target="_blank" rel="noopener noreferrer">View Full Documentation</a>
+          </div>
+        </section>
+        
+        <section className="py-20 px-6 bg-[var(--secondary-background)] bg-opacity-30" id="customization">
+            <div className="container mx-auto text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary-text)] mb-4">Effortless Customization</h2>
+                <p className="text-lg text-[var(--secondary-text)] max-w-3xl mx-auto">
+                    Fine-tune January's personality by editing the system prompt, and match your brand's aesthetic with simple CSS modifications. Create a truly unique chatbot experience.
+                </p>
+            </div>
+        </section>
+      </main>
+
+      <footer className="bg-[var(--secondary-background)] py-10 px-6">
+        <div className="container mx-auto text-center text-[var(--secondary-text)]">
+          <p className="mb-4">Created by <a className="font-semibold text-[var(--primary-text)] hover:text-[var(--accent-color)] transition-colors" href="https://francisjbutti.vercel.app/" rel="noopener noreferrer" target="_blank">Francis John LiButti</a></p>
+          <div className="flex justify-center space-x-6 mb-6">
+            <a className="hover:text-[var(--primary-text)] transition-colors" href="https://github.com/Frankwerd" rel="noopener noreferrer" target="_blank">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+            </a>
+            <a className="hover:text-[var(--primary-text)] transition-colors" href="https://www.linkedin.com/in/francis-libutti-398981156/" rel="noopener noreferrer" target="_blank">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+            </a>
+          </div>
+          <div className="space-x-4">
+            <a className="hover:text-[var(--primary-text)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js" rel="noopener noreferrer" target="_blank">Project on GitHub</a>
+            <span>•</span>
+            <a className="hover:text-[var(--primary-text)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/blob/main/LICENSE" rel="noopener noreferrer" target="_blank">MIT License</a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
