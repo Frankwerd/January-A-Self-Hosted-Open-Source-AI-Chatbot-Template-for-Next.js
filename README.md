@@ -1,7 +1,7 @@
 # January: A Self-Hosted AI Chatbot Template for Next.js
 
 <p align="center">
-  <a href="https://self-hosted-open-source-ai-chatbot.vercel.app" target="_blank">
+  <a href="https://project-january.vercel.app" target="_blank">
     <strong>✨ View the Live Demo &rarr;</strong>
   </a>
 </p>
