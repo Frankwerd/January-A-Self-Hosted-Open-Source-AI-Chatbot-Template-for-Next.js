@@ -141,6 +141,93 @@ This setting (a number between 0.0 and 1.0) controls the creativity of the AI.
 -   **Initial Greeting:** To change the first message the user sees, open `src/components/ChatWidget.jsx` and modify the initial state in the `useState` hook for `messages`.
 -   **Styling:** To change the colors, icon, or dimensions, modify the CSS rules directly in `src/components/ChatWidget.css`.
 
+### Using a Different AI Provider (e.g., OpenAI)
+
+The template is easily adaptable. Here’s how you would switch to OpenAI:
+
+**1. Install the OpenAI SDK:**
+Stop your server and run:
+```bash
+npm install openai
+```
+
+**2. Update Environment Variables:**
+In your `.env.local` file, uncomment and fill in your `OPENAI_API_KEY` and update the `AI_MODEL_NAME`:
+```env
+# ...
+GOOGLE_GENERATIVE_AI_API_KEY="..." # (Can be left here or removed)
+OPENAI_API_KEY="sk-YOUR_OPENAI_API_KEY_HERE"
+
+AI_MODEL_NAME="gpt-4-turbo"
+# ...
+```
+
+**3. Modify the API Route:**
+Replace the contents of `src/app/api/chat/route.js` with logic for the new provider. Here is an example for OpenAI:
+
+```javascript
+// src/app/api/chat/route.js (Example for OpenAI)
+import OpenAI from 'openai';
+
+export const runtime = 'edge';
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export async function POST(req) {
+  const { messages } = await req.json();
+
+  const systemPrompt = process.env.AI_SYSTEM_PROMPT || "You are a helpful assistant.";
+  const modelName = process.env.AI_MODEL_NAME || "gpt-4-turbo";
+  const temperature = parseFloat(process.env.AI_TEMPERATURE) || 0.7;
+
+  // Add the system prompt to the message array
+  const processedMessages = [
+    { role: 'system', content: systemPrompt },
+    ...messages.filter(msg => msg.role === 'user' || msg.role === 'assistant')
+  ];
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: modelName,
+      temperature: temperature,
+      messages: processedMessages,
+      stream: true,
+    });
+
+    // Create a new stream that sends only the raw text content
+    const customStream = new ReadableStream({
+      async start(controller) {
+        const encoder = new TextEncoder();
+        for await (const chunk of response) {
+          const text = chunk.choices[0]?.delta?.content || '';
+          if (text) {
+            controller.enqueue(encoder.encode(text));
+          }
+        }
+        controller.close();
+      },
+    });
+
+    return new Response(customStream, {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+
+  } catch (error) {
+    console.error("[Chat API Error with OpenAI]", error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+```
+
+### Other Customizations
+-   **Styling:** Modify `/src/components/ChatWidget.css` to change the colors, dimensions, and appearance of the chat widget.
+-   **Initial Greeting:** Edit the `useState` hook for `messages` inside `/src/components/ChatWidget.jsx` to change the initial greeting message.
+
 ## License
 
 This project is licensed under the MIT License.
