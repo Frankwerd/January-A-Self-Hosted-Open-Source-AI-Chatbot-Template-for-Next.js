@@ -1,13 +1,24 @@
 # January: A Self-Hosted AI Chatbot Template for Next.js
 
 <p align="center">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge">
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge">
-  <img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
+  <a href="https://self-hosted-open-source-ai-chatbot.vercel.app/" target="_blank">
+    <strong>✨ View the Live Demo &rarr;</strong>
+  </a>
 </p>
 
-January is an open-source, self-hosted AI chatbot template designed for easy integration into any Next.js/React application. It gives you full control over your data and UI, using your own API keys for services like Google Gemini or OpenAI.
+<p align="center">
+  <img alt="Project Status" src="https://img.shields.io/badge/status-active-brightgreen?style=for-the-badge">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge">
+</p>
+
+<p align="center">
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+  <img alt="Google Gemini" src="https://img.shields.io/badge/Google%20Gemini-8E77F0?style=for-the-badge&logo=google-gemini&logoColor=white">
+</p>
+
+January is a modular, self-hosted AI chatbot template designed for seamless integration into any Next.js/React application. It provides developers full control over their UI, data privacy, and choice of AI provider, using their own API keys without any subscription fees.
 
 ![A demonstration of the January chatbot in action.](https://place-hold.it/800x450.gif)
 *A demonstration of the January chatbot in action.*
@@ -15,22 +26,23 @@ January is an open-source, self-hosted AI chatbot template designed for easy int
 ## Core Features
 
 -   **Self-Hosted & Private:** The entire application runs within your own project, ensuring no chat data is sent to third-party services.
--   **Bring Your Own API Key (BYOK):** Integrates directly with the official Google Generative AI SDK. You only pay for your own token usage with no extra platform fees.
--   **Full Control:** The simple, self-contained code in the component and API route means there are no complex abstractions, giving you complete freedom to customize.
+-   **Bring Your Own API Key (BYOK):** Comes pre-configured for Google's Generative AI SDK, but is easy to adapt to others. You only pay for your own token usage with no extra platform fees.
+-   **Provider Flexible (Modular by Design):** The simple backend logic can be quickly swapped to support any major AI provider, such as OpenAI, Anthropic, and more.
 -   **Streaming Responses:** Responses are streamed word-by-word from the API for an enhanced, real-time user experience.
 -   **Conversation History:** The AI retains the context of the current conversation, allowing for natural, follow-up questions.
--   **Easy to Customize:** Since the code is provided, you have full control to modify the UI (`ChatWidget.css`) and backend logic (`/api/chat/route.js`).
+-   **Fully Customizable:** Since the unopinionated code is provided, you have total control to modify the UI (`ChatWidget.css`) and backend logic (`/api/chat/route.js`).
 
 ## Technology Stack
 
 -   **Next.js** (App Router)
 -   **React** (with Hooks)
--   **@google/generative-ai** (Official Google AI SDK)
+-   **@google/generative-ai** (Official Google AI SDK, pre-configured)
+-   **Adaptable for other SDKs** (e.g., `openai`)
 -   **react-markdown** (For rendering rich AI responses)
 
-## Getting Started: A Step-by-Step Guide
+## Quickstart Guide (Default: Google Gemini)
 
-These instructions are for adding January to an existing Next.js (v13+ App Router) project.
+These instructions cover adding January to an existing Next.js project with the default Google Gemini setup. See the "Customization" section to use a different provider.
 
 ### Prerequisites
 
@@ -40,8 +52,9 @@ These instructions are for adding January to an existing Next.js (v13+ App Route
 
 ### Step 1: Copy Project Files
 
-1.  Copy the `ChatWidget.jsx` and `ChatWidget.css` files into your project's `/src/components` directory.
-2.  Copy the entire `/api` directory (which contains a `chat` folder with `route.js`) into your project's `/src/app` directory.
+1.  Copy `ChatWidget.jsx` and `ChatWidget.css` into your project's `/src/components` directory.
+2.  Copy the entire `/api` directory into your project's `/src/app` directory.
+
 
 Your final file structure should look like this:
 
