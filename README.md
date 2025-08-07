@@ -116,6 +116,91 @@ To deploy your project, you must securely add your environment variables to Verc
 5.  **For the multi-line `AI_SYSTEM_PROMPT`**, simply copy the entire prompt text and paste it directly into the "Value" field. Vercel will handle the newlines correctly.
 6.  After adding all variables, go to the **Deployments** tab and redeploy your project to apply the changes.
 
+## Deployment & Integration Strategies
+
+Once configured, you need to get the chatbot onto a live website.
+
+### Strategy 1: Native Integration (For Next.js Sites)
+
+This is the simplest method and is the primary use case for this template.
+
+1.  Follow the "How to Use" steps to integrate the chatbot into the client's existing Next.js project.
+2.  Deploy the Next.js application to a hosting provider like Vercel or Netlify.
+3.  In the hosting provider's project dashboard, set the environment variables from your `.env.local` file (e.g., `GOOGLE_API_KEY`, `AI_SYSTEM_PROMPT`). This is the secure, production-safe way to manage your secrets.
+
+### Strategy 2: Iframe Embedding (For Non-React Sites)
+
+If the client's website is built with WordPress, Shopify, Squarespace, or plain HTML, you can host the chatbot separately and embed it using an `<iframe>`.
+
+**Step 1: Create a Dedicated Chatbot Host Project**
+
+Create a new, minimal Next.js project. The only purpose of this project is to host your chatbot. Follow the "How to Use" instructions to install the template into this new project.
+
+**Step 2: Deploy the Host Project**
+
+Deploy this new Next.js project to Vercel or Netlify. In the Vercel/Netlify project settings, add the environment variables (`GOOGLE_API_KEY`, etc.) to configure the chatbot. You will get a public URL for your deployed chatbot (e.g., `https://my-client-chatbot.vercel.app`).
+
+**Step 3: Add the Embed Snippet to the Client's Site**
+
+Provide the client with the following HTML/JavaScript snippet. They should paste this code into their website's main template, right before the closing `</body>` tag.
+
+```html
+<!-- START: AI Chatbot Embed Snippet -->
+<style>
+  #ai-chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff; /* <-- Change this to your client's brand color */
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  #ai-chat-iframe-container {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 370px;
+    height: 550px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 9999;
+    overflow: hidden;
+  }
+  #ai-chat-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<div id="ai-chat-icon">💬</div>
+<div id="ai-chat-iframe-container">
+  <!-- 👇 Change this URL to your deployed chatbot's URL! 👇 -->
+  <iframe src="https://my-client-chatbot.vercel.app"></iframe>
+</div>
+
+<script>
+  const chatIcon = document.getElementById('ai-chat-icon');
+  const chatIframeContainer = document.getElementById('ai-chat-iframe-container');
+  chatIcon.addEventListener('click', () => {
+    const isVisible = chatIframeContainer.style.display === 'block';
+    chatIframeContainer.style.display = isVisible ? 'none' : 'block';
+  });
+</script>
+<!-- END: AI Chatbot Embed Snippet -->
+```
+
 ## Customization
 
 You have full control to change the chatbot's personality, behavior, and appearance.
