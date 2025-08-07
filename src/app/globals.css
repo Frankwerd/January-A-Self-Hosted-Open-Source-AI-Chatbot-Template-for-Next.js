@@ -1,0 +1,22 @@
+:root {
+    --primary-color: #0d7ff2;
+    --dark-bg: #101a23;
+    --dark-surface: #1a242e;
+    --dark-border: #223649;
+    --text-primary: #ffffff;
+    --text-secondary: #90adcb;
+}
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+}
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
