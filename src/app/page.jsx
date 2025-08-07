@@ -52,12 +52,12 @@ export default function JanuaryPage() {
       <div className="min-h-screen flex flex-col antialiased">
         <header className="sticky top-0 z-50 bg-opacity-70 backdrop-blur-lg border-b border-gray-700/50">
           <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a className="text-2xl font-bold text-[var(--primary-text-color)]" href="#">January</a>
+            <a className="text-2xl font-bold text-[var(--primary-text-color)]" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">January</a>
             <div className="hidden md:flex items-center space-x-8">
               <a className="text-[var(--primary-text-color)] hover:text-[var(--accent-color)] transition-colors duration-300" href="#features">Features</a>
               <a className="text-[var(--primary-text-color)] hover:text-[var(--accent-color)] transition-colors duration-300" href="#installation">Installation</a>
             </div>
-            <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-2 px-5 rounded-lg hover:bg-opacity-90 transition-colors duration-300" href="#">View on GitHub</a>
+            <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-2 px-5 rounded-lg hover:bg-opacity-90 transition-colors duration-300" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">View on GitHub</a>
           </nav>
         </header>
         <main className="flex-grow">
@@ -69,7 +69,7 @@ export default function JanuaryPage() {
               <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4">The AI Chatbot You Can Host Yourself</h1>
               <p className="text-lg md:text-xl text-[var(--secondary-text-color)] max-w-3xl mx-auto mb-8">January is a free, open-source chatbot template for your website. Simple to install, fully customizable, and completely under your control.</p>
               <div className="flex justify-center items-center gap-4 flex-wrap">
-                <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform duration-300 transform hover:scale-105" href="#">Get the Code on GitHub</a>
+                <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform duration-300 transform hover:scale-105" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">Get the Code on GitHub</a>
               </div>
             </div>
           </section>
@@ -138,7 +138,7 @@ export default function JanuaryPage() {
                 </div>
               </div>
               <div className="text-center mt-12">
-                <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform duration-300 transform hover:scale-105" href="#">View Full Documentation</a>
+                <a className="bg-[var(--accent-color)] text-[var(--background-color)] font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform duration-300 transform hover:scale-105" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">View Full Documentation</a>
               </div>
             </div>
           </section>
@@ -147,9 +147,9 @@ export default function JanuaryPage() {
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <p className="mb-4 md:mb-0">January - An Open-Source Project</p>
             <div className="flex space-x-6 mb-4 md:mb-0">
-              <a className="hover:text-[var(--accent-color)] transition-colors" href="#">GitHub Repository</a>
-              <a className="hover:text-[var(--accent-color)] transition-colors" href="#">Report an Issue</a>
-              <a className="hover:text-[var(--accent-color)] transition-colors" href="#">MIT License</a>
+              <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js">GitHub Repository</a>
+              <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/issues">Report an Issue</a>
+              <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/blob/main/LICENSE">MIT License</a>
             </div>
             <p>© 2024</p>
           </div>
