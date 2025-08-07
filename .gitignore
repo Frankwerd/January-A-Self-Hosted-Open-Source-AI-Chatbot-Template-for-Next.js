@@ -1,0 +1,23 @@
+# Dependencies
+/node_modules
+
+# Next.js build artifacts
+/.next/
+/out/
+
+# Production builds and static exports
+/build
+
+# Miscellaneous
+.DS_Store
+*.pem
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

@@ -1,22 +1,35 @@
+/* src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-    --primary-color: #0d7ff2;
-    --dark-bg: #101a23;
-    --dark-surface: #1a242e;
-    --dark-border: #223649;
-    --text-primary: #ffffff;
-    --text-secondary: #90adcb;
+    --primary-background: #2A0C4E;
+    --secondary-background: #51355A;
+    --primary-text: #FFF8F0;
+    --accent-color: #9E2B25;
+    --secondary-text: rgba(255, 248, 240, 0.7);
 }
 body {
-    font-family: 'Space Grotesk', sans-serif;
-    background-color: var(--dark-bg);
-    color: var(--text-primary);
+    background-color: var(--primary-background);
+    color: var(--primary-text);
+    font-family: 'Inter', sans-serif;
 }
-.video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+.btn-primary {
+    @apply bg-[var(--accent-color)] text-[var(--primary-text)] font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105;
+}
+.btn-secondary {
+     @apply bg-transparent border border-[var(--accent-color)] text-[var(--accent-color)] font-bold py-2 px-5 rounded-lg transition-all hover:bg-[var(--accent-color)] hover:text-[var(--primary-text)];
+}
+.feature-card {
+    @apply bg-[var(--primary-background)] p-8 rounded-xl flex flex-col items-start gap-4 transition-transform transform hover:-translate-y-2 shadow-lg;
+}
+.code-snippet {
+    @apply bg-black bg-opacity-20 p-4 rounded-lg relative font-mono text-sm;
+}
+.copy-button {
+    @apply absolute top-2 right-2 bg-[var(--secondary-background)] text-[var(--primary-text)] p-2 rounded-md text-xs hover:bg-[var(--accent-color)] transition-colors;
 }
