@@ -151,7 +151,7 @@ export default function JanuaryPage() {
               <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/issues">Report an Issue</a>
               <a className="hover:text-[var(--accent-color)] transition-colors" href="https://github.com/Frankwerd/January-A-Self-Hosted-Open-Source-AI-Chatbot-Template-for-Next.js/blob/main/LICENSE">MIT License</a>
             </div>
-            <p>© 2024</p>
+            <p>© 2025</p>
           </div>
         </footer>
       </div>
