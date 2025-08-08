@@ -20,8 +20,11 @@
 
 January is a modular, self-hosted AI chatbot template designed for seamless integration into any Next.js/React application. It provides developers full control over their UI, data privacy, and choice of AI provider, using their own API keys without any subscription fees.
 
-![A demonstration of the January chatbot in action.](https://place-hold.it/800x450.gif)
-*A demonstration of the January chatbot in action.*
+<div align="center">
+
+![Application Screenshot](<https://i.imgur.com/xNnAlFR.png>)
+
+</div>
 
 ## Core Features
 
